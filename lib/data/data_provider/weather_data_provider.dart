@@ -1,7 +1,7 @@
 //providing an allias
 import 'package:http/http.dart' as http;
 import '../../secrets.dart';
-//
+
 class WeatherDataProvider {
   Future<String> getCurrentWeather(String cityName) async {
     try {
