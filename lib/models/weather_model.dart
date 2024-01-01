@@ -7,7 +7,7 @@ class WeatherModel {
   final double currentWindSpeed;
   final double currentHumidity;
   final double currentTemp;
-  
+
   WeatherModel({
     required this.currentSky,
     required this.currentPressure,
@@ -42,13 +42,15 @@ class WeatherModel {
     };
   }
 
+    //conveth the map<string, dynamic> data into weather data
   factory WeatherModel.fromMap(Map<String, dynamic> map) {
+          final currentWeatherData = map['list'][0];
     return WeatherModel(
-      currentSky: map['currentSky'] as String,
-      currentPressure: map['currentPressure'] as double,
-      currentWindSpeed: map['currentWindSpeed'] as double,
-      currentHumidity: map['currentHumidity'] as double,
-      currentTemp: map['currentTemp'] as double,
+      currentSky: currentWeatherData['weather'][0]['main'],
+      currentPressure: currentWeatherData['main']['pressure'],
+      currentWindSpeed: currentWeatherData['wind']['speed'],
+      currentHumidity: currentWeatherData['main']['humidity'],
+      currentTemp: currentWeatherData['main']['temp'],
     );
   }
 
