@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:weather_app/data/data_provider/weather_data_provider.dart';
+import 'package:weather_app/models/weather_model.dart';
 
 class WeatherRepository {
   final WeatherDataProvider weatherDataProvider;
@@ -9,7 +10,7 @@ class WeatherRepository {
     this.weatherDataProvider,
   );
 
-  Future<Map<String, dynamic>> getCurrentWeather() async {
+  Future<WeatherModel> getCurrentWeather() async {
     try {
       String cityName = 'London';
 
@@ -21,8 +22,10 @@ class WeatherRepository {
       if (data['cod'] != '200') {
         throw 'An unexpected error occurred';
       }
-
-      return data;
+      
+      //we can use both the map row data or json raw data to convert
+      //return WeatherModel.fromJson(weatherData);
+      return WeatherModel.fromMap(data);
     } catch (e) {
       throw e.toString();
     }
