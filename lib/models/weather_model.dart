@@ -42,9 +42,12 @@ class WeatherModel {
     };
   }
 
-    //conveth the map<string, dynamic> data into weather data
+  //purpose of this factory constructor is to create an instance of WeatherModel
+  //based on a provided Map<String, dynamic>.
+  //get the Map<String, dynamic> data and extrace them inro weather model
   factory WeatherModel.fromMap(Map<String, dynamic> map) {
-          final currentWeatherData = map['list'][0];
+    //get the first element from the map
+    final currentWeatherData = map['list'][0];
     return WeatherModel(
       currentSky: currentWeatherData['weather'][0]['main'],
       currentPressure: currentWeatherData['main']['pressure'],
