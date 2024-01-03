@@ -13,7 +13,7 @@ final class WeatherSuccess extends WeatherState {
 
 final class WeatherFailure extends WeatherState {
   final String error;
-  WeatherFailure(this.error);
+  WeatherFailure({required this.error});
 }
 
 final class WeatherLoading extends WeatherState {}
