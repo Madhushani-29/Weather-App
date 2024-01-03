@@ -1,10 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:weather_app/bloc/weather_bloc.dart';
 import 'package:weather_app/presentation/widgets/additional_info_item.dart';
-import 'package:weather_app/presentation/widgets/hourly_forecast_item.dart';
 
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({super.key});
@@ -17,6 +15,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
   @override
   void initState() {
     super.initState();
+    context.read<WeatherBloc>().add(WeatherFetched());
   }
 
   @override
@@ -33,9 +32,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              // setState(() {
-              //   weather = getCurrentWeather();
-              // });
+              context.read<WeatherBloc>().add(WeatherFetched());
             },
             icon: const Icon(Icons.refresh),
           ),
@@ -49,7 +46,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
             );
           }
 
-          if (!(state is WeatherSuccess)) {
+          if (state is! WeatherSuccess) {
             return const Center(
               child: CircularProgressIndicator.adaptive(),
             );
