@@ -13,12 +13,12 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
   void _getCurrentWeather(
       WeatherFetched event, Emitter<WeatherState> emit) async {
-    WeatherLoading();
+    //emit(WeatherLoading());
     //the errors  may pass to the bloc
     //so need to use try catch
     try {
       final weather = await weatherRepository.getCurrentWeather();
-      emit(WeatherSuccess(weatherModel:weather));
+      emit(WeatherSuccess(weatherModel: weather));
     } catch (e) {
       emit(WeatherFailure(e.toString()));
     }

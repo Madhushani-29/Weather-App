@@ -15,11 +15,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => WeatherRepository(WeatherDataProvider()),
+      create: (context) => WeatherRepository(
+        WeatherDataProvider(),
+      ),
       child: BlocProvider(
-        //context.read. means WeatherBloc is given access to the WeatherRepository 
-        //without causing the widget tree to rebuild.
-        create: (context) => WeatherBloc(context.read<WeatherRepository>()),
+        create: (context) => WeatherBloc(
+          context.read<WeatherRepository>(),
+        ),
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData.dark(useMaterial3: true),

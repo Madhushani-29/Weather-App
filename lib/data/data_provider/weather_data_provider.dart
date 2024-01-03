@@ -1,6 +1,5 @@
-//providing an allias
 import 'package:http/http.dart' as http;
-import '../../secrets.dart';
+import 'package:weather_app/secrets.dart';
 
 class WeatherDataProvider {
   Future<String> getCurrentWeather(String cityName) async {
@@ -10,6 +9,7 @@ class WeatherDataProvider {
           'https://api.openweathermap.org/data/2.5/forecast?q=$cityName&APPID=$openWeatherAPIKey',
         ),
       );
+
       return res.body;
     } catch (e) {
       throw e.toString();
